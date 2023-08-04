@@ -4,6 +4,7 @@ A plugin for use with Expo and react-native-code-push
 ## Setup
 1. Copy the files from this repo and place them into your Expo app directory.
 2. Add the following to your Expo app config
+3. Adjust the plugin files as needed for your use case. This will not be a plug-and-play situation in most cases.
 
 ### Plugin Installation for Expo (Android)
 
