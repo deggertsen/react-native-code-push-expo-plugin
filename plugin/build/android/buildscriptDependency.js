@@ -10,11 +10,17 @@ function applyImplementation(appBuildGradle) {
     const codePushImplementation = `apply from: new File(["node", "--print", "require.resolve('react-native-code-push/package.json')"].execute(null, rootDir).text.trim()).getParentFile().getAbsolutePath() + "/android/codepush.gradle"`;
     // Make sure the project does not have the dependency already
     if (!appBuildGradle.includes(codePushImplementation)) {
-        if (appBuildGradle.includes('apply from: new File(reactNativeRoot, "react.gradle")')) {
-            return appBuildGradle.replace('apply from: new File(reactNativeRoot, "react.gradle")', `apply from: new File(reactNativeRoot, "react.gradle")\n${codePushImplementation}`);
+        const reactNativeFileClassGradleInclude = `'apply from: new File(reactNativeRoot, "react.gradle")`;
+        if (appBuildGradle.includes(reactNativeFileClassGradleInclude)) {
+            return appBuildGradle.replace(reactNativeFileClassGradleInclude, `${reactNativeFileClassGradleInclude}\n${codePushImplementation}`);
         }
-        else if (appBuildGradle.includes('apply from: "../../node_modules/react-native/react.gradle"')) {
-            return appBuildGradle.replace('apply from: "../../node_modules/react-native/react.gradle"', `apply from: "../../node_modules/react-native/react.gradle"\n${codePushImplementation}`);
+        const reactNativeRawGradleInclude = `apply from: "../../node_modules/react-native/react.gradle"`;
+        if (appBuildGradle.includes(reactNativeRawGradleInclude)) {
+            return appBuildGradle.replace(reactNativeRawGradleInclude, `${reactNativeRawGradleInclude}\n${codePushImplementation}`);
+        }
+        const reactNative71Include = `apply from: new File(["node", "--print", "require.resolve('@react-native-community/cli-platform-android/package.json')"].execute(null, rootDir).text.trim(), "../native_modules.gradle");`;
+        if (appBuildGradle.includes(reactNative71Include)) {
+            return appBuildGradle.replace(reactNative71Include, `${reactNative71Include}\n${codePushImplementation}`);
         }
     }
     return appBuildGradle;
