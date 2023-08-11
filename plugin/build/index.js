@@ -16,5 +16,13 @@ const withRnCodepush = (config, props) => {
     config = (0, ios_1.withIosAppDelegateDependency)(config, props);
     return config;
 };
-const pak = require('react-native-code-push/package.json');
-exports.default = (0, config_plugins_1.createRunOncePlugin)(withRnCodepush, pak.name, pak.version);
+// @todo: iS IT NEEDED TO DECLARE THIS VAR AS IS REWRITTEN AT #34
+let pkg = {
+    name: "react-native-code-push",
+    // UNVERSIONED...
+};
+try {
+    pkg = require("react-native-code-push/package.json");
+}
+catch { }
+exports.default = (0, config_plugins_1.createRunOncePlugin)(withRnCodepush, pkg.name, pkg.version);

@@ -2,10 +2,6 @@ import { ConfigPlugin, withAppDelegate } from 'expo/config-plugins'
 
 import { PluginConfigType } from '../pluginConfig'
 
-// Use these imports in SDK 46 and lower
-// import { ConfigPlugin, InfoPlist, withInfoPlist } from '@expo/config-plugins';
-// import { ExpoConfig } from '@expo/config-types';
-
 function applyImplementation(appDelegate: string, find: string, add: string, replace?: boolean) {
   // Make sure the project does not have the settings already
   if (!appDelegate.includes(add)) {
