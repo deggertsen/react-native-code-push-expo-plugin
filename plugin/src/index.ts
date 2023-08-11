@@ -24,14 +24,13 @@ const withRnCodepush: ConfigPlugin<PluginConfigType> = (config, props) => {
   return config
 }
 
-// @todo: iS IT NEEDED TO DECLARE THIS VAR AS IS REWRITTEN AT #34
+// @todo: Is it needed to declare this var? as it's rewritten at #34
 let pkg: { name: string; version?: string } = {
   name: "react-native-code-push",
   // UNVERSIONED...
 };
-
 try {
-  pkg = require("react-native-code-push/package.json");
+  const codePushPkg = require("react-native-code-push/package.json");
+  pkg = codePushPkg;
 } catch {}
-
 export default createRunOncePlugin(withRnCodepush, pkg.name, pkg.version);

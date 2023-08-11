@@ -16,13 +16,14 @@ const withRnCodepush = (config, props) => {
     config = (0, ios_1.withIosAppDelegateDependency)(config, props);
     return config;
 };
-// @todo: iS IT NEEDED TO DECLARE THIS VAR AS IS REWRITTEN AT #34
+// @todo: Is it needed to declare this var? as it's rewritten at #34
 let pkg = {
     name: "react-native-code-push",
     // UNVERSIONED...
 };
 try {
-    pkg = require("react-native-code-push/package.json");
+    const codePushPkg = require("react-native-code-push/package.json");
+    pkg = codePushPkg;
 }
 catch { }
 exports.default = (0, config_plugins_1.createRunOncePlugin)(withRnCodepush, pkg.name, pkg.version);
