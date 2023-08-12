@@ -2,9 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.withIosAppDelegateDependency = void 0;
 const config_plugins_1 = require("expo/config-plugins");
-// Use these imports in SDK 46 and lower
-// import { ConfigPlugin, InfoPlist, withInfoPlist } from '@expo/config-plugins';
-// import { ExpoConfig } from '@expo/config-types';
 function applyImplementation(appDelegate, find, add, replace) {
     // Make sure the project does not have the settings already
     if (!appDelegate.includes(add)) {

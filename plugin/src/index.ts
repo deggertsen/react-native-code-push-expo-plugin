@@ -1,4 +1,4 @@
-import { ConfigPlugin, createRunOncePlugin } from 'expo/config-plugins'
+import {ConfigPlugin, createRunOncePlugin} from 'expo/config-plugins'
 
 import {
   withAndroidBuildscriptDependency,
@@ -6,8 +6,8 @@ import {
   withAndroidSettingsDependency,
   withAndroidStringsDependency,
 } from './android'
-import { withIosAppDelegateDependency, withIosBuildscriptDependency } from './ios'
-import { PluginConfigType } from './pluginConfig'
+import {withIosAppDelegateDependency, withIosBuildscriptDependency} from './ios'
+import {PluginConfigType} from './pluginConfig'
 
 /**
  * A config plugin for configuring `react-native-code-push`
@@ -24,5 +24,13 @@ const withRnCodepush: ConfigPlugin<PluginConfigType> = (config, props) => {
   return config
 }
 
-const pak = require('react-native-code-push/package.json')
-export default createRunOncePlugin(withRnCodepush, pak.name, pak.version)
+// @todo: Is it needed to declare this var? as it's rewritten at #34
+let pkg: { name: string; version?: string } = {
+  name: "react-native-code-push",
+  // UNVERSIONED...
+};
+try {
+  const codePushPkg = require("react-native-code-push/package.json");
+  pkg = codePushPkg;
+} catch {}
+export default createRunOncePlugin(withRnCodepush, pkg.name, pkg.version);

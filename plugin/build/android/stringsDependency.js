@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.withAndroidStringsDependency = void 0;
-const config_plugins_1 = require("@expo/config-plugins");
+const config_plugins_1 = require("expo/config-plugins");
 /**
- * Update `<project>/settings.gradle` by adding react-native-code-push
+ * Update `<project>/app/src/main/res/values/strings.xml` by adding react-native-code-push deployment key
  */
 function setStrings(strings, name, value) {
     // Helper to add string.xml JSON items or overwrite existing items with the same name.
